@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+
+<!--    -->
+<!--</ScrollView>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED">
+
+    <!--个人头像区域-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/h_back"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/user_background"/>
+        <ImageView
+            android:id="@+id/h_head"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/avatar_border"
+            android:padding="1dp"
+            android:src="@drawable/ic_person_info"/>
+
+
+        <!--用户昵称-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/h_back"
+            android:orientation="horizontal"
+            android:layout_marginBottom="25dp">
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="昵称"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout style="@style/user_wraplayout"
+        android:layout_marginTop="13dp">
+
+        <LinearLayout
+            android:id="@+id/preson_data"
+            style="@style/user_baselayout"
+            android:background="@drawable/person_topline" >
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_person_info" />
+            <TextView
+                style="@style/usertext"
+                android:text="个人信息"/>
+            <ImageView style="@style/user_arrow" />
+        </LinearLayout>
+
+        <!--            &lt;!&ndash; 分割线 &ndash;&gt;-->
+        <!--            <View-->
+        <!--                style="@style/user_line"-->
+        <!--                android:layout_height="1dp"/>-->
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/collect"-->
+        <!--                style="@style/user_baselayout">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imageView6"-->
+        <!--                    android:layout_width="40dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:src="@android:drawable/btn_star" />-->
+        <!--                <TextView-->
+        <!--                    style="@style/usertext"-->
+        <!--                    android:text="我的收藏"/>-->
+        <!--                <ImageView style="@style/user_arrow"/>-->
+        <!--            </LinearLayout>-->
+
+        <!-- 分割线 -->
+        <View
+            style="@style/user_line"
+            android:layout_height="1dp"/>-->
+
+        <LinearLayout
+            android:id="@+id/courseware"
+            style="@style/user_baselayout"
+            android:background="@drawable/person_bottom">
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_input_get" />
+            <!--            ic_dialog_email-->
+            <TextView
+                style="@style/usertext"
+                android:text="我的课件" />
+            <ImageView
+                style="@style/user_arrow"/>
+        </LinearLayout>
+
+        <View
+            style="@style/user_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/discuss"-->
+        <!--                style="@style/user_baselayout"-->
+        <!--                android:background="@drawable/person_bottom">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imageView8"-->
+        <!--                    android:layout_width="40dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:src="@drawable/ic_talk_area" />-->
+        <!--                <TextView-->
+        <!--                    style="@style/usertext"-->
+        <!--                    android:text="我的讨论" />-->
+        <!--                <ImageView-->
+        <!--                    style="@style/user_arrow"/>-->
+        <!--            </LinearLayout>-->
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/user_wraplayout">
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/phone"-->
+        <!--                style="@style/user_baselayout"-->
+        <!--                android:background="@drawable/person_topline">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imageView9"-->
+        <!--                    android:layout_width="40dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:src="@drawable/ic_person_phone_foreground"/>-->
+        <!--                <TextView-->
+        <!--                    style="@style/usertext"-->
+        <!--                    android:text="绑定手机" />-->
+        <!--                <ImageView-->
+        <!--                    style="@style/user_arrow"/>-->
+        <!--            </LinearLayout>-->
+
+        <!--            <View-->
+        <!--                style="@style/user_line"-->
+        <!--                android:layout_height="1dp"/>-->
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/share"-->
+        <!--                style="@style/user_baselayout"-->
+        <!--                android:background="@drawable/person_topline">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imageView10"-->
+        <!--                    android:layout_width="40dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:src="@android:drawable/ic_menu_share" />-->
+        <!--                <TextView-->
+        <!--                    style="@style/usertext"-->
+        <!--                    android:text="分享应用" />-->
+        <!--                <ImageView-->
+        <!--                    style="@style/user_arrow"/>-->
+        <!--            </LinearLayout>-->
+
+        <!--            <View-->
+        <!--                android:id="@+id/view9"-->
+        <!--                style="@style/user_line"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="1dp"/>-->
+
+        <LinearLayout
+            android:id="@+id/feedback"
+            style="@style/user_baselayout"
+            android:background="@drawable/person_topline">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_dialog_info"
+                />
+            <TextView
+                style="@style/usertext"
+                android:text="问题与反馈"/>
+            <ImageView style="@style/user_arrow"/>
+        </LinearLayout>
+
+        <View
+            style="@style/user_line"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:id="@+id/about_us"
+            style="@style/user_baselayout"
+            android:background="@drawable/person_bottom">
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                />
+            <TextView
+                style="@style/usertext"
+                android:text="关于我们"/>
+            <ImageView style="@style/user_arrow"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/btn_quit"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button"
+            android:text="退 出 登 录"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </FrameLayout>
+
+</LinearLayout>

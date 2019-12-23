@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.example.teacherclient.HomeFragment">
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/today_course"
+        android:orientation="vertical"
+        android:background="@drawable/background">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="今日课程"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/deep_gray"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_border"/>
+
+        <TextView
+            android:id="@+id/text_no_course_tip"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:text="今天没有课程安排哦！"/>
+        <LinearLayout
+            android:id="@+id/layout_course_1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_1_time"
+                android:layout_height="match_parent"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_1_name"
+                android:layout_height="match_parent"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_1_place"
+                android:layout_height="match_parent"
+                android:textColor="@color/deep_gray"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_course_2"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:textSize="15sp"
+                android:id="@+id/today_course_2_time"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_2_name"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_2_place"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:textColor="@color/deep_gray"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_course_3"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_3_time"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_3_name"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:textColor="@color/deep_gray"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
+                android:id="@+id/today_course_3_place"
+                android:layout_height="match_parent"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:textColor="@color/deep_gray"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/more_course"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="@null"
+            android:text="more>"
+            android:textAllCaps="false"
+            android:textColor="@color/color_1afa29"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_margin="8dp"
+            android:id="@+id/my_classroom"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/background"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_classroom_1"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="我的课堂"
+                android:textSize="18sp"
+                android:textColor="@color/color_1afa29"
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="@drawable/background"
+            android:id="@+id/join_classroom"
+            android:layout_margin="8dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_create_classroom"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/color_1afa29"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="新建课堂"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,20 +2,62 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.teacherclient">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-feature android:required="false"
+        android:name="android.hardware.camera"/>
+
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <provider
+            android:authorities="com.example.teacherclient.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+
+        <activity android:name="com.example.teacherclient.WriteNewCard"></activity>
+        <activity android:name="com.example.teacherclient.AddCourse" />
+        <activity android:name="com.example.teacherclient.CourseTable" />
+        <activity android:name="com.example.teacherclient.CourseMain" />
+        <activity android:name="com.example.teacherclient.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.teacherclient.ForgetPassword" />
+        <activity
+            android:name="com.example.teacherclient.MainActivity"
+            android:label="" />
+        <activity
+            android:name="com.example.teacherclient.LogInActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.example.teacherclient.ModifyPersonal" />
+        <activity android:name="com.example.teacherclient.JoinClass" />
+        <activity android:name="com.example.teacherclient.MyClass" />
+        <activity android:name="com.example.teacherclient.SelectPicture"/>
+        <activity android:name="com.example.teacherclient.MyHomework"/>
+        <activity android:name="com.example.teacherclient.HomeworkDetail"/>
+        <activity android:name="com.example.teacherclient.Courseware"/>
+        <activity android:name="com.example.teacherclient.ShowMoreInfo"></activity>
+        <activity android:name="com.example.teacherclient.MoreInfo" />
     </application>
 
 </manifest>
