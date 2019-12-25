@@ -6,8 +6,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +35,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import okhttp3.Call;
@@ -57,6 +63,45 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     private LinearLayout about_us;
     private ImageView img_head;
     private static final int WRITE_SDCARD_PERMISSION_REQUEST_CODE = 1;
+    private String avatarName;
+    private Handler handler;
+
+    public PersonalFragment() {
+        //ui线程中更新头像
+
+        handler = new Handler(){
+           @Override
+           public void handleMessage(@NonNull Message msg) {
+               super.handleMessage(msg);
+               switch (msg.what){
+                   case 0:
+                       t_name.setText(preferences.getString("name","昵称"));
+                       if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                               !=PackageManager.PERMISSION_GRANTED){
+                           ActivityCompat.requestPermissions(getActivity(),
+                                   new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                   WRITE_SDCARD_PERMISSION_REQUEST_CODE);
+
+                       }
+                       Bitmap bitmap = null;
+                       BitmapFactory.Options options = new BitmapFactory.Options();
+                       options.inSampleSize = 2;
+                       File file = new File(Environment.getExternalStorageDirectory(),preferences.getString("id","")+".jpg");
+                       bitmap = BitmapFactory.decodeFile(file.getPath(), options);
+                       img_head.setImageBitmap(bitmap);
+                       break;
+                   case 1:
+                       Toast.makeText(getContext(),"登录失效，请重新登录",Toast.LENGTH_SHORT).show();
+                       editor.putBoolean("isLogin",false);
+                       editor.apply();
+                       getActivity().finish();
+                       startActivity(new Intent(getActivity(), LogInActivity.class));
+                       break;
+               }
+
+           }
+       };
+    }
 
     @Nullable
     @Override
@@ -106,21 +151,8 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
         preson_data=(LinearLayout)view.findViewById(R.id.preson_data);
         preson_data.setOnClickListener(this);
 
-
-//        collection=(LinearLayout)view.findViewById(R.id.collect);
-//        collection.setOnClickListener(this);
-
         courseware=(LinearLayout)view.findViewById(R.id.courseware);
         courseware.setOnClickListener(this);
-
-//        discussion=(LinearLayout)view.findViewById(R.id.discuss);
-//        discussion.setOnClickListener(this);
-//
-//        phone=(LinearLayout)view.findViewById(R.id.phone);
-//        phone.setOnClickListener(this);
-//
-//        share=(LinearLayout)view.findViewById(R.id.share);
-//        share.setOnClickListener(this);
 
         feedback=(LinearLayout)view.findViewById(R.id.feedback);
         feedback.setOnClickListener(this);
@@ -141,24 +173,10 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
         if (uploadAvatar){
             uploadAvatar();//上传头像
         }else {
-            refreshData();//更新头像
+            getAvatar();//更新头像
         }
-
-        t_name.setText(preferences.getString("name","昵称"));
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            !=PackageManager.PERMISSION_GRANTED){
-                                ActivityCompat.requestPermissions(getActivity(),
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        WRITE_SDCARD_PERMISSION_REQUEST_CODE);
-
-                            }
-        Bitmap bitmap = null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        File file = new File(Environment.getExternalStorageDirectory(),"avatar.jpg");
-        bitmap = BitmapFactory.decodeFile(file.getPath(), options);
-        img_head.setImageBitmap(bitmap);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -184,7 +202,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                     RequestBody fileBody = RequestBody.create(MediaType.parse("file/*"),file);
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
-                            .addFormDataPart("user_no",preferences.getString("user_id",""))
+                            .addFormDataPart("user_no",preferences.getString("id",""))
                             .addFormDataPart("file",fileName,fileBody)
                             .addFormDataPart("token",preferences.getString("token",""))
                             .build();
@@ -211,20 +229,14 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                                         Log.d("上传头像",result);
                                         editor.putBoolean("uploadAvatar",false);
                                         editor.apply();
-                                    }else {
-                                        Toast.makeText(getContext(), "登录失效！请重新登录", Toast.LENGTH_SHORT).show();
-                                        editor.putBoolean("isLogin",false);
-                                        editor.apply();
-                                        startActivity(new Intent(getContext(),LogInActivity.class));
-                                        getActivity().finish();
-
                                     }
                                 }catch (JSONException e){
                                     e.printStackTrace();
                                 }
+                                handler.sendEmptyMessage(0);
 
                             } else {
-                                Log.i("lfq" ,response.message() + " error : body " + response.body().string());
+                                handler.sendEmptyMessage(1);
                             }
                         }
                     });
@@ -239,14 +251,15 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     /**
      * 刷新页面信息
      */
-    private void refreshData(){
+    private void getAvatar(){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
-                            .add("user_no",preferences.getString("user_id",""))
+                            .add("user_no",preferences.getString("id",""))
+                            .add("avatar_name",preferences.getString("id","")+".jpg")
                             .add("token",preferences.getString("token",""))
                             .build();
 
@@ -264,26 +277,27 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             if (response.isSuccessful()) {
+                                InputStream inputStream = response.body().byteStream();
+                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                                File file = new File(Environment.getExternalStorageDirectory(),preferences.getString("id","")+".jpg");
                                 try {
-                                    String result = response.body().string();
-                                    Log.d("s",result);
-                                    JSONObject object = new JSONObject(result);
-                                    int state = object.getInt("state");
-                                    if (state == 0){
-                                        //图片保存在本地
-                                    }else {
-                                        Toast.makeText(getContext(), "登录失效！请重新登录", Toast.LENGTH_SHORT).show();
-                                        editor.putBoolean("isLogin",false);
-                                        editor.apply();
-                                        startActivity(new Intent(getContext(),LogInActivity.class));
-                                        getActivity().finish();
+                                    if(file.exists()) {
+                                        file.delete();
                                     }
-                                }catch (Exception e){
+                                    file.createNewFile();
+                                } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+                                FileOutputStream outputStream = new FileOutputStream(file);
+                                bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+                                outputStream.flush();
+                                outputStream.close();
+                                Log.d("success","更新头像");
+                                handler.sendEmptyMessage(0);
 
                             } else {
-                                Log.i("更新头像出错" ,response.message() + " error : body " + response.body().string());
+                                handler.sendEmptyMessage(1);
+
                             }
                         }
                     });
