@@ -234,7 +234,7 @@
 
         <LinearLayout
             android:background="@drawable/background"
-            android:id="@+id/join_classroom"
+            android:id="@+id/create_classroom"
             android:layout_margin="8dp"
             android:layout_width="140dp"
             android:layout_height="140dp"

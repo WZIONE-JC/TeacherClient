@@ -140,10 +140,9 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
         boolean uploadAvatar = preferences.getBoolean("uploadAvatar",false);
         if (uploadAvatar){
             uploadAvatar();//上传头像
+        }else {
+            refreshData();//更新头像
         }
-
-        refreshData();//更新头像
-
 
         t_name.setText(preferences.getString("name","昵称"));
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)

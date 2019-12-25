@@ -50,9 +50,10 @@
             android:name="com.example.teacherclient.LogInActivity"
             android:launchMode="singleTask" />
         <activity android:name="com.example.teacherclient.ModifyPersonal" />
-        <activity android:name="com.example.teacherclient.JoinClass" />
+        <activity android:name="com.example.teacherclient.CreateClass" />
         <activity android:name="com.example.teacherclient.MyClass" />
-        <activity android:name="com.example.teacherclient.SelectPicture"/>
+        <activity android:name="com.example.teacherclient.SelectPicture"
+            android:theme="@style/DialogStyleBottom"/>
         <activity android:name="com.example.teacherclient.MyHomework"/>
         <activity android:name="com.example.teacherclient.HomeworkDetail"/>
         <activity android:name="com.example.teacherclient.Courseware"/>

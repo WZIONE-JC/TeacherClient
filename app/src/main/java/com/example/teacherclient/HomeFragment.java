@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
 
 
     private LinearLayout myClassroom;
-    private LinearLayout joinClassroom;
+    private LinearLayout createClassroom;
     private Button moreCourse;
     @Nullable
     @Override
@@ -48,12 +48,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        joinClassroom = (LinearLayout)getActivity().findViewById(R.id.join_classroom);
-        joinClassroom.setOnClickListener(new View.OnClickListener() {
+        createClassroom = (LinearLayout)getActivity().findViewById(R.id.create_classroom);
+        createClassroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //go to join class activity
-                startActivity(new Intent(getActivity(),JoinClass.class));
+                startActivity(new Intent(getActivity(), CreateClass.class));
             }
         });
 
