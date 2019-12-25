@@ -123,7 +123,7 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
                             .add("user_id",t_id.getText().toString())
-//                            .add("student_name",name.getText().toString())
+                            .add("user_name",name.getText().toString())
                             .add("sex",type)
                             .add("school",collage.getText().toString())
                             .add("major",major.getText().toString())

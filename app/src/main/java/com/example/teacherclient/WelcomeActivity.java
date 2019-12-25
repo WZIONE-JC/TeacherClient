@@ -62,7 +62,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 switch (msg.what) {
                     case 0:
                         startActivity(new Intent(WelcomeActivity.this, LogInActivity.class));
-                        finish();//destroy this activity
                         break;
                 }
             }
@@ -119,7 +118,6 @@ public class WelcomeActivity extends AppCompatActivity {
                     Toast.makeText(WelcomeActivity.this,"服务器异常！",Toast.LENGTH_SHORT).show();
                     Looper.loop();
                     startActivity(new Intent(WelcomeActivity.this,LogInActivity.class));
-                    finish();
                 }
             }
         }).start();

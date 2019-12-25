@@ -202,7 +202,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                 try {
                     String fileName = preferences.getString("id","")+".jpg";
                     OkHttpClient client = new OkHttpClient();
-                    File file = new File("//sdcard/avatar.jpg");
+                    File file = new File(Environment.getExternalStorageDirectory(),preferences.getString("id","")+".jpg");
                     RequestBody fileBody = RequestBody.create(MediaType.parse("file/*"),file);
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
