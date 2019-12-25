@@ -166,14 +166,18 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getAvatar();//更新头像
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
         boolean uploadAvatar = preferences.getBoolean("uploadAvatar",false);
         if (uploadAvatar){
             uploadAvatar();//上传头像
-        }else {
-            getAvatar();//更新头像
         }
     }
 
@@ -276,6 +280,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
 
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                            Log.d("刷新头像",response.toString());
                             if (response.isSuccessful()) {
                                 InputStream inputStream = response.body().byteStream();
                                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
@@ -294,10 +299,8 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                                 outputStream.close();
                                 Log.d("success","更新头像");
                                 handler.sendEmptyMessage(0);
-
                             } else {
-                                handler.sendEmptyMessage(1);
-
+                                Log.d("失败",response.toString());
                             }
                         }
                     });

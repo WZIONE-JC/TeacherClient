@@ -47,8 +47,7 @@
             android:name="com.example.teacherclient.MainActivity"
             android:label="" />
         <activity
-            android:name="com.example.teacherclient.LogInActivity"
-            android:launchMode="singleTask" />
+            android:name="com.example.teacherclient.LogInActivity" />
         <activity android:name="com.example.teacherclient.ModifyPersonal" />
         <activity android:name="com.example.teacherclient.CreateClass" />
         <activity android:name="com.example.teacherclient.MyClass" />

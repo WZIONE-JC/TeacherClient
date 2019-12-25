@@ -106,33 +106,29 @@ public class LogInActivity extends AppCompatActivity {
 
                     JSONObject result = new JSONObject(responseData);
 
-                    Log.d("da",result.toString());
-                    if (result.has("state")){
-                        int state = result.getInt("state");
-                        String token = result.getString("token");
+                    Log.d("登录",result.toString());
 
+                    int state = result.getInt("state");
 //                        Log.d("Login",String.valueOf(state));
-                        if (state == 0){
-                            editor.putString("id",username);
-                            editor.putString("token",token);
-                            editor.putBoolean("isLogin",true);
-                            editor.putString("pass",passMD5);
-                            editor.apply();
-                            Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Looper.prepare();
-                            Toast.makeText(LogInActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
-                            Looper.loop();
-                        }
-                    }else {
-                        Log.d("login:",result.toString());
+                    if (state == 0){
+                        String token = result.getString("token");
+                        editor.putString("id",username);
+                        editor.putString("token",token);
+                        editor.putBoolean("isLogin",true);
+                        editor.putString("pass",passMD5);
+                        editor.apply();
+                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else if(state == -1){
+                        Looper.prepare();
+                        Toast.makeText(LogInActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else if (state == -2){
                         Looper.prepare();
                         Toast.makeText(LogInActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }
-
 
                 }catch (Exception e){
                     e.printStackTrace();
