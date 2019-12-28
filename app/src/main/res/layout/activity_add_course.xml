@@ -129,7 +129,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="上课教室"/>
+            android:text="上课星期"/>
         <Spinner
             android:layout_marginRight="50dp"
             android:layout_width="match_parent"
@@ -152,7 +152,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="上课教室"/>
+            android:text="上课时间"/>
         <Spinner
             android:spinnerMode="dialog"
             android:layout_marginRight="50dp"

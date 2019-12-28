@@ -52,9 +52,9 @@
         android:layout_height="66dp" />-->
 
     <LinearLayout
-        android:id="@+id/nowclass"
+        android:id="@+id/now_class"
         android:layout_width="match_parent"
-        android:layout_height="139dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/background"
         android:clickable="true"
@@ -63,11 +63,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/classname"
-            android:layout_width="344dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/text_classroom_tip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
+            android:gravity="center"
+            android:text="暂无正在进行中的课堂"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/now_class_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="35dp"
             android:text="TextView"
             android:textSize="20sp" />
@@ -75,25 +85,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/person"
-                android:layout_width="201dp"
+                android:id="@+id/now_class_day"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="34dp"
                 android:layout_marginTop="10dp"
                 android:text="mark"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/date"
-                android:layout_width="163dp"
+                android:id="@+id/now_class_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="mark"
                 android:textSize="15sp" />

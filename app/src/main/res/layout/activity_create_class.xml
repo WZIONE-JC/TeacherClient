@@ -29,48 +29,127 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:layout_marginTop="50dp"
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="课程名称"/>
 
         <EditText
-            android:id="@+id/textjoin"
-            android:layout_width="210dp"
-            android:layout_height="59dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:maxLines="1"
+            android:id="@+id/create_course_name"
+            android:layout_marginLeft="10dp"
+            android:textColorHint="#A9A9A9"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:background="@null"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <TextView-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="验证码"/>-->
+
+<!--        <EditText-->
+<!--            android:maxLines="1"-->
+<!--            android:id="@+id/verification_code"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColorHint="#A9A9A9"-->
+<!--            android:textCursorDrawable="@drawable/cursor_color"-->
+<!--            android:background="@null"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+<!--    </LinearLayout>-->
+
+
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="20dp"
             android:gravity="center"
-            android:hint="请输入邀请码"
-            android:numeric="integer"
-            android:paddingLeft="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="上课星期"/>
+        <Spinner
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:spinnerMode="dialog"
+            android:id="@+id/create_course_day" />
+    </LinearLayout>
 
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/button_sign_up_ok"
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/button"
-        android:text="加  入"
-        android:textColor="#ffffff"
-        android:textSize="20sp" />
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="上课节次"/>
+        <Spinner
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:spinnerMode="dialog"
+            android:id="@+id/create_course_time" />
+    </LinearLayout>
 
 
-    <Button
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginStart="0dp"
-        android:background="@null"
-        android:text="扫描二维码加入"
-        android:textColor="@color/color_1afa29" />
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="创建课堂"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/button_create_classroom"/>
+    </FrameLayout>
 
 
 </LinearLayout>

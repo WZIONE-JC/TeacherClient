@@ -30,7 +30,6 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
     private Button btn_submit;
     private TextView t_id;
     private EditText name;
-    private EditText collage;
     private EditText major;
     private EditText tel;
     private EditText mail;
@@ -55,7 +54,6 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
 
         t_id=findViewById(R.id.id);
         name=(EditText)findViewById(R.id.name);
-        collage=(EditText)findViewById(R.id.collage);
         major=(EditText)findViewById(R.id.major);
         tel=(EditText)findViewById(R.id.tel);
         mail=(EditText)findViewById(R.id.mail);
@@ -88,16 +86,14 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
     private void initData(){
         //其实应该先从服务器获取数据更新本地信息
 
-        String id = preferences.getString("id","xxx");
-        String name = preferences.getString("name","xxx");
-        String school = preferences.getString("school","北京交通大学");
-        String major = preferences.getString("major","软件工程");
-        String phone = preferences.getString("phone","xxx");
-        String mail = preferences.getString("mail","xxx");
+        String id = preferences.getString("id","");
+        String name = preferences.getString("name","昵称");
+        String major = preferences.getString("major","");
+        String phone = preferences.getString("phone","");
+        String mail = preferences.getString("mail","");
         String sex = preferences.getString("sex","m");
         t_id.setText(id);
         this.name.setText(name);
-        this.collage.setText(school);
         this.major.setText(major);
         this.tel.setText(phone);
         this.mail.setText(mail);
@@ -125,10 +121,9 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
                             .add("user_id",t_id.getText().toString())
                             .add("user_name",name.getText().toString())
                             .add("sex",type)
-                            .add("school",collage.getText().toString())
-                            .add("major",major.getText().toString())
-                            .add("avatar_id","1")
+                            .add("title",major.getText().toString())
                             .add("token",preferences.getString("token","no_token"))
+                            .add("birthday","2019-12-30")
                             .build();
 
                     Log.d("q",t_id.getText().toString());
@@ -150,7 +145,6 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
 
                         if (state == MyStaticValue.STATE_OK){
                             editor.putString("name",name.getText().toString());
-                            editor.putString("school",collage.getText().toString());
                             editor.putString("major",major.getText().toString());
                             editor.putString("phone",tel.getText().toString());
                             editor.putString("mail",mail.getText().toString());
