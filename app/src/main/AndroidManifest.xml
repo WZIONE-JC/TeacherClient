@@ -4,11 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature android:required="false"
-        android:name="android.hardware.camera"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -19,45 +20,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CourseCall"></activity>
+        <activity android:name=".NewTest" />
+        <activity android:name=".CourseTest" />
+        <activity android:name=".NewHomework" />
+        <activity android:name=".BulidAnnounce" />
 
         <provider
-            android:authorities="com.example.teacherclient.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.teacherclient.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.example.teacherclient.WriteNewCard"></activity>
-        <activity android:name="com.example.teacherclient.AddCourse" />
-        <activity android:name="com.example.teacherclient.CourseTable" />
-        <activity android:name="com.example.teacherclient.CourseMain" />
-        <activity android:name="com.example.teacherclient.WelcomeActivity">
+        <activity android:name=".WriteNewCard" />
+        <activity android:name=".AddCourse" />
+        <activity android:name=".CourseTable" />
+        <activity android:name=".CourseMain" />
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.teacherclient.ForgetPassword" />
+        <activity android:name=".ForgetPassword" />
         <activity
-            android:name="com.example.teacherclient.MainActivity"
+            android:name=".MainActivity"
             android:label="" />
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".ModifyPersonal" />
+        <activity android:name=".CreateClass" />
+        <activity android:name=".MyClass" />
         <activity
-            android:name="com.example.teacherclient.LogInActivity" />
-        <activity android:name="com.example.teacherclient.ModifyPersonal" />
-        <activity android:name="com.example.teacherclient.CreateClass" />
-        <activity android:name="com.example.teacherclient.MyClass" />
-        <activity android:name="com.example.teacherclient.SelectPicture"
-            android:theme="@style/DialogStyleBottom"/>
-        <activity android:name="com.example.teacherclient.MyHomework"/>
-        <activity android:name="com.example.teacherclient.HomeworkDetail"/>
-        <activity android:name="com.example.teacherclient.Courseware"/>
-        <activity android:name="com.example.teacherclient.ShowMoreInfo"></activity>
-        <activity android:name="com.example.teacherclient.MoreInfo" />
+            android:name=".SelectPicture"
+            android:theme="@style/DialogStyleBottom" />
+        <activity android:name=".MyHomework" />
+        <activity android:name=".Courseware" />
+        <activity android:name=".MoreInfo" />
     </application>
 
 </manifest>

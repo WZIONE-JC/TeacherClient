@@ -19,9 +19,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="我的作业"
+            android:text="作业"
             android:textColor="@color/color_1afa29"
             android:textSize="19sp" />
+        <TextView
+            android:id="@+id/send_homework"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:text="发布作业"
+            android:textColor="@color/color_1afa29"
+            android:textSize="18sp" />
+
     </RelativeLayout>
 
     <ListView

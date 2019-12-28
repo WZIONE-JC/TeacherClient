@@ -32,6 +32,20 @@
             android:textColor="@color/color_1afa29"
             android:textSize="19sp" />
 
+        <TextView
+            android:id="@+id/send_announce"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:text="发布通知"
+            android:textColor="@color/color_1afa29"
+            android:textSize="18sp" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -74,19 +88,21 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/now_announce_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:gravity="center"
-            android:text="通知内容" />
+            android:gravity="center" />
 
         <TextView
+            android:id="@+id/now_announce_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:gravity="right"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
             android:text="time" />
 
     </LinearLayout>
@@ -94,7 +110,7 @@
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -215,4 +231,26 @@
         </LinearLayout>
 
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.teacherclient.TalkFragment">
+
+
+        <Button
+            android:background="@drawable/button"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:id="@+id/button_random_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="随机测试"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            />
+
+
+    </FrameLayout>
 </LinearLayout>

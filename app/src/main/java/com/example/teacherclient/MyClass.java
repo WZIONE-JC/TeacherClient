@@ -193,8 +193,8 @@ public class MyClass extends Activity implements AdapterView.OnItemClickListener
             nowClassDay.setVisibility(View.VISIBLE);
 
             nowClassName.setText(classroom.getCourseName());
-            nowClassDay.setText(days[classroom.getTeachTime()]);
-            nowClassTime.setText(times[classroom.getTeachLocation()]);
+            nowClassDay.setText(days[classroom.getTeachTime()-1]);
+            nowClassTime.setText(times[classroom.getTeachLocation()-1]);
             nowClassCode = classroom.getCode();
         }
 

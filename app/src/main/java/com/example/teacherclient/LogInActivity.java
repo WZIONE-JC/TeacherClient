@@ -107,7 +107,12 @@ public class LogInActivity extends AppCompatActivity {
                     JSONObject result = new JSONObject(responseData);
 
                     Log.d("登录",result.toString());
-
+                    if (result.isNull("state")){
+                        Looper.prepare();
+                        Toast.makeText(LogInActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                        return;
+                    }
                     int state = result.getInt("state");
 //                        Log.d("Login",String.valueOf(state));
                     if (state == 0){
