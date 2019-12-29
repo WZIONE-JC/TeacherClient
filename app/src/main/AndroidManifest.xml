@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CourseCall"></activity>
+        <activity android:name=".DiscussItem"></activity>
+        <activity android:name=".CourseCall" />
         <activity android:name=".NewTest" />
         <activity android:name=".CourseTest" />
         <activity android:name=".NewHomework" />

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WriteNewCard"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/menu"
+        android:padding="0dp">
+
+
+        <ImageView
+            android:id="@+id/back_from_discuss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="主题帖"
+            android:textColor="@color/color_1afa29"
+            android:textSize="19sp" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:hint="标题"
+                android:textSize="25sp"
+                android:gravity="center_vertical"
+                android:id="@+id/discuss_title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColorHint="#A9A9A9"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:background="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu"/>
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/discuss_text"
+                android:minLines="5"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:background="@null"
+                android:gravity="left|top"
+                android:inputType="textMultiLine"
+                android:textColorHint="#A9A9A9"/>
+            <ListView
+                android:id="@+id/comment"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
