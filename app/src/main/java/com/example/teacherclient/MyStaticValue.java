@@ -32,6 +32,8 @@ class MyStaticValue {
     static final String GET_TEST = "http://122.51.186.91:8081/course/getTestInfo";
     static final String CHOOSE_STUDENT = "http://122.51.186.91:8081/course/getRandomCall";
     static final String SEND_CALL = "http://122.51.186.91:8081/course/startCall";
+    static final String NEW_DISCUSS = "http://122.51.186.91:8081/discuss/new";
+    static final String GET_DISCUSS = "http://122.51.186.91:8081/discuss/getDiscuss";
 
     public static String getFilePathByUri(Context context, Uri uri) {
         String path = null;

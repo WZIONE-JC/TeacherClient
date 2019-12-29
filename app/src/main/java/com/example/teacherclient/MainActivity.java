@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         getClassInfo();
+        getDiscuss();
         initData();
 
         /**
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 navigationView.getMenu().getItem(position).setChecked(true);
                 topText.setText(navigationView.getMenu().getItem(position).getTitle());
+                getDiscuss();
             }
 
             @Override
@@ -275,5 +277,69 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    private void getDiscuss(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("token",preferences.getString("token",""))
+                            .build();
 
+                    Request request = new Request.Builder()
+                            .url(new URL(MyStaticValue.GET_DISCUSS))
+                            .post(body)
+                            .build();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if (response.isSuccessful()){
+                                String result = response.body().string();
+                                try {
+                                    JSONObject object = new JSONObject(result);
+                                    Log.d("a",object.toString());
+                                    int state = object.getInt("status");
+                                    if (state == 0){
+                                        JSONArray list = object.getJSONArray("list");
+                                        for (int i = 0; i < list.length(); i++) {
+                                            JSONObject temp = list.getJSONObject(i);
+                                            List<TalkCardTable> tables = LitePal.where("discussNo = ? ",temp.getString("discuss_no")).find(TalkCardTable.class);
+                                            if (tables == null || tables.size() == 0){
+                                            }else {
+                                                for (int j = 0; j < tables.size(); j++) {
+                                                    tables.get(j).delete();
+                                                }
+                                            }
+                                            TalkCardTable table = new TalkCardTable();
+                                            table.setDiscussNo(String.valueOf(temp.getInt("discuss_no")));
+                                            table.setType(temp.getString("course_name"));
+                                            table.setTitle(temp.getString("discuss_title"));
+                                            table.setWriter(temp.getString("post_no"));
+                                            table.setTextContent(temp.getString("content"));
+                                            table.setTimeStamp(String.valueOf(temp.getLong("discuss_start_time")));
+                                            table.save();
+                                        }
+
+                                    }
+                                }catch (Exception e1){
+                                    e1.printStackTrace();
+                                }
+                            }else {
+                                Log.d("a",response.body().string());
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }
