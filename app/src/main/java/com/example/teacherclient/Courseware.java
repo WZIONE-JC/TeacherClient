@@ -24,6 +24,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -186,7 +188,116 @@ public class Courseware extends Activity {
             }
         };
         listv.setAdapter(simleAdapter);
+        listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    Intent intent = new Intent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/yiclass");//存储文件夹
+                    if (!file.exists()) {
+                        file.mkdirs();
+                    }
+                    File file1 = new File(file, courseFiles.get(position).getFileName());
+                    if (!file1.exists()){
+                        Toast.makeText(Courseware.this, "文件不存在，请先下载文件！",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    String type = "";
+                    for(int i =0;i<MIME_MapTable.length;i++) {
+                        //判断文件的格式
+                        if (file1.getPath().toString().contains(MIME_MapTable[i][0].toString())) {
+                            type = MIME_MapTable[i][1];
+                            break;
+                        }
+                    }
+                    Log.d("type++++++",type);
+                    Uri uri;
+                    if(Build.VERSION.SDK_INT >= 24) {
+                        uri = FileProvider.getUriForFile(Courseware.this, "com.example.teacherclient.fileprovider", file1);
+                    } else {
+                        uri = Uri.fromFile(file1); // Android 7.0 以前使用原来的方法来获取文件的 Uri
+                    }
+                    intent.setDataAndType(uri, type);
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(Courseware.this, "sorry附件不能打开，请下载相关软件！",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
     }
+
+    private String [][]  MIME_MapTable={
+            {".3gp",    "video/3gpp"},
+            {".apk",    "application/vnd.android.package-archive"},
+            {".asf",    "video/x-ms-asf"},
+            {".avi",    "video/x-msvideo"},
+            {".bin",    "application/octet-stream"},
+            {".bmp",    "image/bmp"},
+            {".c",  "text/plain"},
+            {".class",  "application/octet-stream"},
+            {".conf",   "text/plain"},
+            {".cpp",    "text/plain"},
+            {".doc",    "application/msword"},
+            {".docx",   "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
+            {".xls",    "application/vnd.ms-excel"},
+            {".xlsx",   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
+            {".exe",    "application/octet-stream"},
+            {".gif",    "image/gif"},
+            {".gtar",   "application/x-gtar"},
+            {".gz", "application/x-gzip"},
+            {".h",  "text/plain"},
+            {".htm",    "text/html"},
+            {".html",   "text/html"},
+            {".jar",    "application/java-archive"},
+            {".java",   "text/plain"},
+            {".jpeg",   "image/jpeg"},
+            {".jpg",    "image/jpeg"},
+            {".js", "application/x-javascript"},
+            {".log",    "text/plain"},
+            {".m3u",    "audio/x-mpegurl"},
+            {".m4a",    "audio/mp4a-latm"},
+            {".m4b",    "audio/mp4a-latm"},
+            {".m4p",    "audio/mp4a-latm"},
+            {".m4u",    "video/vnd.mpegurl"},
+            {".m4v",    "video/x-m4v"},
+            {".mov",    "video/quicktime"},
+            {".mp2",    "audio/x-mpeg"},
+            {".mp3",    "audio/x-mpeg"},
+            {".mp4",    "video/mp4"},
+            {".mpc",    "application/vnd.mpohun.certificate"},
+            {".mpe",    "video/mpeg"},
+            {".mpeg",   "video/mpeg"},
+            {".mpg",    "video/mpeg"},
+            {".mpg4",   "video/mp4"},
+            {".mpga",   "audio/mpeg"},
+            {".msg",    "application/vnd.ms-outlook"},
+            {".ogg",    "audio/ogg"},
+            {".pdf",    "application/pdf"},
+            {".png",    "image/png"},
+            {".pps",    "application/vnd.ms-powerpoint"},
+            {".ppt",    "application/vnd.ms-powerpoint"},
+            {".pptx",   "application/vnd.openxmlformats-officedocument.presentationml.presentation"},
+            {".prop",   "text/plain"},
+            {".rc", "text/plain"},
+            {".rmvb",   "audio/x-pn-realaudio"},
+            {".rtf",    "application/rtf"},
+            {".sh", "text/plain"},
+            {".tar",    "application/x-tar"},
+            {".tgz",    "application/x-compressed"},
+            {".txt",    "text/plain"},
+            {".wav",    "audio/x-wav"},
+            {".wma",    "audio/x-ms-wma"},
+            {".wmv",    "audio/x-ms-wmv"},
+            {".wps",    "application/vnd.ms-works"},
+            {".xml",    "text/plain"},
+            {".z",  "application/x-compress"},
+            {".zip",    "application/x-zip-compressed"},
+            {"",        "*/*"}
+    };
     private void uploadFile(){
         new Thread(new Runnable() {
             @Override

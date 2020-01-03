@@ -127,4 +127,6 @@ class MyStaticValue {
     private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
+
+
 }
